@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-
     public CharacterController controller;
     public Transform Cam;
+
+    public Animator anim;
 
     public float speed = 6f;
 
@@ -13,12 +14,23 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Update()
     {
+        //GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        anim = GetComponent<Animator>();
+
+        CameraFollow();
+    }
+
+    void CameraFollow()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
+
+            //anim.SetBool("walk", true);
+
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
@@ -26,5 +38,16 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+    }
+
+    void Gravity()
+    {
+       /*if (CharacterController.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = 0f;
+            }
+        }*/
     }
 }
