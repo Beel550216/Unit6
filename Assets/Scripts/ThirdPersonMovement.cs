@@ -7,7 +7,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public Animator anim;
 
-    public float speed = 6f;
+    public float speed = 5f;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -15,6 +15,7 @@ public class ThirdPersonMovement : MonoBehaviour
     //float gravity = 9.8f;
     void Update()
     {
+        speed = 5f;
         //GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         anim = GetComponent<Animator>();
 
@@ -41,7 +42,7 @@ public class ThirdPersonMovement : MonoBehaviour
             }
             else
             {
-                speed = 6f;
+                speed = 5f;
             }
 
             Animate(2);
@@ -65,13 +66,11 @@ public class ThirdPersonMovement : MonoBehaviour
                 {
                     anim.SetBool("walk", false);
                     anim.SetBool("run", false);
-
                 }
 
                 if (num == 2)
                 {
                     anim.SetBool("walk", true);
-
                 }
                 if (num == 3)
                 {
