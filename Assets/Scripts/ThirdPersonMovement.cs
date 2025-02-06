@@ -62,7 +62,7 @@ public class ThirdPersonMovement : MonoBehaviour
             print("not grounded");
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
