@@ -9,7 +9,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float speed = 5f;
 
-    public float turnSmoothTime = 0.1f;
+    public float turnSmoothTime = 0.3f;
     float turnSmoothVelocity;
 
     private Vector3 playerVelocity;
@@ -20,7 +20,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 1f;
 
 
    bool isGrounded;
@@ -51,21 +51,25 @@ public class ThirdPersonMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); //Mathf.Sqrt(jumpHeight * -2f * gravity);
+            print("Jump");
+        }
+
+
         if (controller.isGrounded)
         {
             print("grounded");
             playerVelocity.y = Input.GetKeyDown(KeyCode.Space) ? jumpPower : 0;
         }
-        else
+        else 
         {
             print("not grounded");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        
         
         playerVelocity += Physics.gravity * Time.deltaTime;
 

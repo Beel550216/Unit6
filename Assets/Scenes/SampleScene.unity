@@ -1970,7 +1970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156498556}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20884167, y: -0.6685784, z: 0.20416614, w: 0.6838892}
+  m_LocalRotation: {x: 0.2089314, y: -0.6682776, z: 0.20407432, w: 0.684183}
   m_LocalPosition: {x: 4.084324, y: 2.8678255, z: -0.10918856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3049,11 +3049,11 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   jumpPower: 1
   groundCheck: {fileID: 358389539}
-  groundDistance: 0.4
+  groundDistance: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpHeight: 3
+  jumpHeight: 1
 --- !u!143 &253526694
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5594,16 +5594,28 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.445759
+      value: -21.069
       objectReference: {fileID: 0}
     - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0680494
+      value: 4.1668
       objectReference: {fileID: 0}
     - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 97.8575
+      value: 92.984
       objectReference: {fileID: 0}
     - target: {fileID: 7474811358102887733, guid: edf6fe73ce49a48ee8efbaeb6647a817, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10169,7 +10181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2850383, y: 0.20844667, z: -0.063654095, w: 0.9334085}
+  m_LocalRotation: {x: 0.28501666, y: 0.2087642, z: -0.06375108, w: 0.93333745}
   m_LocalPosition: {x: 17.887465, y: 13.6178255, z: -11.860832}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24942,11 +24954,11 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   jumpPower: 1
   groundCheck: {fileID: 358389539}
-  groundDistance: 0.4
+  groundDistance: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpHeight: 3
+  jumpHeight: 1
 --- !u!4 &2862774683670016153
 Transform:
   m_ObjectHideFlags: 0
