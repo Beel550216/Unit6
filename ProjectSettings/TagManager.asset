@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - root
+  - sea
+  - Quit
+  - axe
   layers:
   - Default
   - TransparentFX

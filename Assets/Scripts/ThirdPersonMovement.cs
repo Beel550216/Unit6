@@ -15,7 +15,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private Vector3 playerVelocity;
     public float jumpPower = 1f;
 
-    float gravity = 9.8f;
+    float gravity = -9.8f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -25,38 +25,54 @@ public class ThirdPersonMovement : MonoBehaviour
 
    bool isGrounded;
 
+    public GameObject axe;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
         speed = 5f;
         //GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
 
         DebugSpeed();
         Animate(1);
 
         Movement();
+        DetectJump();
+        Attack();
+
+
+        //print("velocity y=" + playerVelocity.y);
     }
 
     void Movement()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = controller.isGrounded;
 
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
         }
 
+        Attack();
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); //Mathf.Sqrt(jumpHeight * -2f * gravity);
+            playerVelocity.y = 1f ; //Mathf.Sqrt(jumpHeight * -2f * gravity);
             print("Jump");
-        }
+
+            Animate(4);
+        }*/
 
 
         if (controller.isGrounded)
@@ -71,9 +87,9 @@ public class ThirdPersonMovement : MonoBehaviour
 
         
         
-        playerVelocity += Physics.gravity * Time.deltaTime;
+        playerVelocity.y += gravity * Time.deltaTime;
 
-        controller.Move(playerVelocity);
+        controller.Move(playerVelocity * Time.deltaTime);
 
 
 
@@ -102,16 +118,64 @@ public class ThirdPersonMovement : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
     }
+    
+    
+    void DetectJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Animate(4);
 
+        }
+    }
+
+    public void JumpFromEvent()
+    {
+        playerVelocity.y = 11f;  //Mathf.Sqrt(jumpHeight * -2f * gravity);
+        print("Jump");
+
+    }
+
+
+    void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Animate(6);
+        }
+    }
+
+
+    void DisableAxe()
+    {
+        if (axe.gameObject.activeSelf == true)
+        {
+            axe.SetActive(false);
+
+        }
+
+    }
+    void EnableAxe()
+    {
+        if (axe.gameObject.activeSelf == false)
+        {
+            axe.SetActive(true);
+
+            print("axe has been enabled");
+
+            //GameObject.FindGameObjectWithTag("axe").SetActive(false);
+
+        }
+    }
 
     void Animate(int num)
     {
-        if (gameObject.tag == "root")
-        {
                 if (num == 1)
                 {
                     anim.SetBool("walk", false);
                     anim.SetBool("run", false);
+                    anim.SetBool("jump", false);
+                    anim.SetBool("attack", false);
                 }
 
                 if (num == 2)
@@ -123,8 +187,24 @@ public class ThirdPersonMovement : MonoBehaviour
                     anim.SetBool("run", true);
                 }
 
-        }
+                if (num == 4)
+                {
+                   anim.SetBool("jump", true);
+                }
+                if (num == 5)
+                {
+                    anim.SetBool("jump", false);
+                }
+
+                if (num == 6)
+                {
+                    anim.SetBool("attack", true);
+                }
+
     }
+
+
+    
 
 
     void DebugSpeed()
@@ -155,7 +235,6 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
     }
-
 
 
 
