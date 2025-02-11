@@ -29,6 +29,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         anim = GetComponent<Animator>();
     }
 
@@ -44,8 +45,6 @@ public class ThirdPersonMovement : MonoBehaviour
         Movement();
         DetectJump();
         Attack();
-
-
         //print("velocity y=" + playerVelocity.y);
     }
 
@@ -131,7 +130,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public void JumpFromEvent()
     {
-        playerVelocity.y = 11f;  //Mathf.Sqrt(jumpHeight * -2f * gravity);
+        playerVelocity.y = 6f;  //Mathf.Sqrt(jumpHeight * -2f * gravity);
         print("Jump");
 
     }
@@ -201,10 +200,36 @@ public class ThirdPersonMovement : MonoBehaviour
                     anim.SetBool("attack", true);
                 }
 
+            if (num == 7)
+            {
+                anim.SetBool("dig", true);
+            }
+
     }
-
-
     
+    
+    
+    
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("cross"))
+        {
+            print("collided");
+            //Animate(7);
+            Treasure();
+        }
+    }*/
+
+    /*void Search()
+    {
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            print("searching");
+            Animate(7);
+        }
+        
+    }*/
+
 
 
     void DebugSpeed()
@@ -237,6 +262,8 @@ public class ThirdPersonMovement : MonoBehaviour
     }
 
 
+
+    
 
 
     void Gravity()

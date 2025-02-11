@@ -8,6 +8,7 @@ TagManager:
   - sea
   - Quit
   - axe
+  - cross
   layers:
   - Default
   - TransparentFX

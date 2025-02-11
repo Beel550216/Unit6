@@ -3,14 +3,13 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     public Transform respawn;
-    public GameObject Player;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (other.CompareTag("Player"))
+        if (hit.gameObject.tag == "sea")
         {
-            other.transform.position = respawn.transform.position;
+            transform.position = respawn.transform.position;
         }
+        
     }
-
 }
